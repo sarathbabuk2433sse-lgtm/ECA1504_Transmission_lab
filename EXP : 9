@@ -1,0 +1,192 @@
+Test Case 1 :
+
+You are experimenting with a rectangular waveguide to analyze the relationship between its dimensions and wave propagation. The waveguide dimensions are a=4.0 cm, b=2.0 cmand the operating frequency is f=8 GHz.
+
+Calculate the cutoff frequencies for TE10modes.
+Predict the phase and group velocities for the TE10mode at the given frequency.
+If the width of the waveguide is reduced to a=3.0 cm, how does it affect the cutoff frequency
+and propagation characteristics?
+
+AIM: To find the group velocity, phase velocity and phase constant of Electromagnetic waves in Rectangular Waveguides whose dimensions are a=4.0 cm, b=2.0 cmand the operating frequency is f=8 GHz.
+
+CODE:
+clc;
+clear;
+close;
+// Rectangular waveguide - TE10 Mode
+a_values = [4.0 3.0]10^-2;
+b = 2.010^-2;
+f = 810^9;
+c = 310^8;
+m = 1;
+n = 0;
+printf("RECTANGULAR WAVEGUIDE - TE10 MODE\n");
+printf("Frequency = 8 GHz\n\n");
+printf("a(cm)\tfc(GHz)\tVp(Mm/s)\tVg(Mm/s)\tBeta(rad/m)\n");
+printf("----------------------------------------------------------\n");
+for i = 1:2
+a = a_values(i);
+// Cutoff frequency
+fc = (c/(2*%pi))sqrt((m%pi/a)^2+(n*%pi/b)^2);
+// Calculate X
+X = sqrt(1-(fc/f)^2);
+// Phase velocity
+A = c/X;
+// Group velocity
+B = cX;
+// Phase constant
+beta = (2%pif/c)X;
+printf("%f\t%f\t%f\t%f\t%f\n", ...
+a100,fc10^-9,A10^-6,B10^-6,beta);
+end
+
+OUTPUT:
+
+Image
+Test Case 2 :
+
+In a radar system operating at f=15 GHz the waveguide dimensions are a = 2.5 and b = 1.25 cm
+
+Compute the cutoff frequencies for TE10 modes.
+Determine the phase and group velocities for the TE10 mode.
+If dispersion is critical to radar signal accuracy, what strategies would you recommend
+maintaining signal fidelity?
+AIM: To find the group velocity, phase velocity and phase constant of Electromagnetic waves in Rectangular Waveguides whose dimensions are a= 2.5 cm, b=1.25 cmand the operating frequency is f=15 GHz.
+
+CODE:
+
+clc;
+clear;
+close;
+// TE10 Mode
+a = 2.510^-2;
+b = 1.2510^-2;
+f = 1510^9;
+V = 310^8;
+m = 1;
+n = 0;
+// Cutoff frequency
+fc = (V/(2*%pi))sqrt((m%pi/a)^2+(n*%pi/b)^2);
+disp("Cutoff frequency in GHz =");
+disp(fc10^-9);
+// Calculate X
+X = sqrt(1-(fc/f)^2);
+// Phase velocity
+A = V/X;
+disp("Phase velocity in Mm/sec =");
+disp(A10^-6);
+// Group velocity
+B = VX;
+disp("Group velocity in Mm/sec =");
+disp(B10^-6);
+// Phase constant
+beta = (2*%pi*f/V)*X;
+disp("Phase constant in rad/m =");
+disp(beta);
+
+OUTPUT:
+
+Image
+Test Case 3 :
+
+A waveguide with dimensions a=5.0 cm and b=2.5 cmis used to carry a signal at f=10 GHz
+
+Determine the number of TE modes that can propagate at this frequency.
+For the TE10mode, calculate the phase velocity and group velocity.
+Discuss how the presence of multiple propagating modes affects the transmission
+quality and suggest practical solutions to limit multimode effects.
+AIM: To find the group velocity, phase velocity and phase constant of Electromagnetic waves in Rectangular Waveguides whose dimensions are a= 5.0 cm, b=2.5 cmand the operating frequency is f=10 GHz.
+
+CODE:
+clc;
+clear;
+close;
+// Rectangular waveguide
+a = 5.010^-2;
+b = 2.510^-2;
+f = 1010^9;
+V = 310^8;
+// TE10 Mode
+m = 1;
+n = 0;
+// Cutoff frequency
+fc = (V/(2*%pi))sqrt((m%pi/a)^2+(n*%pi/b)^2);
+disp("Cutoff frequency in GHz =");
+disp(fc10^-9);
+// Calculate X using given formula
+X = sqrt(1-(fc/f)^2);
+// Phase velocity
+A = V/X;
+disp("Phase velocity in Mm/sec =");
+disp(A10^-6);
+// Group velocity
+B = VX;
+disp("Group velocity in Mm/sec =");
+disp(B10^-6);
+// Phase constant using given formula
+beta = (2*%pif/V)X;
+disp("Phase constant in rad/m =");
+disp(beta);
+// Calculate propagating TE modes
+count = 0;
+printf("\nPropagating TE Modes:\n");
+for m = 0:3
+for n = 0:1
+if (m <> 0 | n <> 0) then
+fc = (V/(2%pi))sqrt((m%pi/a)^2+(n%pi/b)^2);
+if fc < f then
+count = count+1;
+printf("TE%d%d\n",m,n);
+end
+end
+end
+end
+printf("Total number of TE modes = %d\n",count);
+
+OUTPUT:
+
+Image
+Test Case 4 :
+A research lab is experimenting with high-order TE modes (m,n>l) in a waveguide with dimensions a=3.0 cm b=1.5 cm, and an operating frequency of f=12 GHz.
+
+Calculate the cutoff frequencies for TEIO mode.
+Compute the phase and group velocities of this mode.
+Discuss how high-order modes can be utilized for advanced applications such as
+mode multiplexing in communications.
+AIM: To find the group velocity, phase velocity and phase constant of Electromagnetic waves in Rectangular Waveguides whose dimensions are a=3.0 cm, .5 cmand the operating frequency is f=12 GHz.
+
+CODE:
+clc;
+clear;
+close;
+// Rectangular waveguide - TE10 Mode
+a = 3.010^-2;
+b = 1.510^-2;
+f = 1210^9;
+V = 310^8;
+m = 1;
+n = 0;
+// Cutoff frequency
+fc = (V/(2*%pi))sqrt((m%pi/a)^2+(n*%pi/b)^2);
+disp("Cutoff frequency in GHz =");
+disp(fc10^-9);
+// Calculate X using given formula
+X = sqrt(1-(fc/f)^2);
+// Phase velocity
+A = V/X;
+disp("Phase velocity in Mm/sec =");
+disp(A10^-6);
+// Group velocity
+B = VX;
+disp("Group velocity in Mm/sec =");
+disp(B10^-6);
+// Phase constant
+beta = (2*%pi*f/V)*X;
+disp("Phase constant in rad/m =");
+disp(beta);
+
+OUTPUT:
+
+Image
+RESULT:
+The group velocity, phase velocity and phase constant of waves in a rectangular waveguide are estimated using SCILAB.

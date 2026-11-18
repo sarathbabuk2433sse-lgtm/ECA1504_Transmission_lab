@@ -1,0 +1,100 @@
+Test Case 1:
+Investigating the significance of Characteristic Impedance (Zo), and Propagation Constant(y) of aTransmission Line using the following parameters
+a) Resistance =10 Q/Km
+b) Capacitance = 8 uF/Km
+c) Inductance =3.5 mH/Km
+d) Conductance =4 umho/Km
+e) Frequency= 2 Khz
+
+CODE:
+clear;
+clc;
+R = 10;
+L = 0.003;
+f = 210^3;
+G = 4(10^-6);
+C = 16*(10^-6);
+w = 2*%pif;
+Z = R + (%iwL);
+Y = G + (%iwC);
+Zo = sqrt(Z/Y);
+Zo_real = round(real(Zo)100)/100;
+Zo_imag = round(imag(Zo)100)/100;
+printf('Characteristic impedance Zo = %f + j(%f) ohms\n', Zo_real, Zo_imag);
+P = sqrt(ZY);
+a = real(P);
+al = round(a10000)/10000;
+printf('Attenuation constant alpha = %f neper/km\n', al1000);
+b = imag(P);
+bl = round(b10000)/10000;
+printf('Phase constant beta = %f radians/km\n', bl1000);
+
+OUTPUT:
+
+
+Test Case 2:
+
+Examine the impact of resistance and inductance on the significance of Characteristic Impedance (Zo) and Propagation Constant (y) of aTransmission Line at a frequency f=2.5 Khz. Vary the resistance value from 10 Q to 50 Q at the interval of 10 Q with L,G and C values constant and calculate the Characteristic Impedance and Propagation Constant . Vary the inductance values from 3.5 mH to 11.5 mH at the interval of 2.5 mH with R,G and C values constant.
+
+CODE:
+clear;
+clc;
+R = 10;
+L = 0.003;
+f = 210^3;
+G = 4(10^-6);
+C = 16*(10^-6);
+w = 2*%pif;
+// Series impedance and shunt admittance
+Z = R + (%iwL);
+Y = G + (%iwC);
+// Characteristic impedance
+Zo = sqrt(Z/Y);
+C1 = round(real(Zo)10000)/10000;
+D = round(imag(Zo)10000)/10000;
+printf('Characteristic impedance Zo = %f + j(%f) ohms\n', C1, D);
+// Propagation constant
+P = sqrt(ZY);
+// Attenuation constant
+a = real(P);
+al = round(a10000)/10000;
+printf('Attenuation constant alpha = %f neper/km\n', al);
+// Phase constant
+b = imag(P);
+bl = round(b10000)/10000;
+printf('Phase constant beta = %f radians/km\n', bl);
+
+OUTPUT:
+
+Test Case 3:
+Explore the impact of frequency and capacitance on the significance of Characteristic Impedance (Zo) and Propagation Constant (y) of a Transmission Line. Vary the frequency from 2KHz to 1() KHz at the interval of 2 KHz with L,R ,G and C values constant and calculate the Characteristic Impedance and Propagation Constant . Vary the capacitance values from 8 pF to 16 pF at the interval of 2 pF with R,G and L values constant.
+
+CODE:
+clear;
+clc;
+R = 10;
+L = 0.003;
+f = 210^3;
+G = 4(10^-6);
+C = 16*(10^-6);
+w = 2*%pif;
+// Calculate impedance and admittance
+Z = R + (%iwL);
+Y = G + (%iwC);
+// Characteristic impedance
+Zo = sqrt(Z/Y);
+C1 = round(real(Zo)10000)/10000;
+D1 = round(imag(Zo)10000)/10000;
+printf('Characteristic impedance Zo = %f + j(%f) ohms\n', C1, D1);
+// Propagation constant
+P = sqrt(ZY);
+// Attenuation constant
+a = real(P);
+al = round(a10000)/10000;
+printf('Attenuation constant alpha = %f neper/km\n', al);
+// Phase constant
+b = imag(P);
+bl = round(b10000)/10000;
+printf('Phase constant beta = %f radians/km\n', bl);
+
+OUTPUT:

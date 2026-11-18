@@ -1,0 +1,56 @@
+Test Case 1:
+
+Find the current at the receiving end for the varying values of the attenuation constant a from keeping the characteristic impedance Zo and the phase constant constant
+
+AIM: To find current at the receiving end for the varying values of the attenuation constant u from 0.1 to 0.4 N/Km keeping the characteristic impedance Zo and the phase constant ß constant.
+
+CODE:
+clear;
+clc;
+Zo = 600;
+a = 0.1;
+b = 0.05;
+x = 10;
+Is = 20*(10^-3);
+Vr = 0;
+printf("-Receiving end voltage Vr = 0 because the receiving end has been short-circuited\n");
+// Propagation constant
+P = a + (%ib);
+// Receiving current
+Ir = Is/cosh(xP);
+A = real(Ir);
+B = imag(Ir);
+printf("-Received current Ir = %f /_%f mA\n", ...
+round(abs(Ir)*10^5)/100, ...
+round(atan(B,A)*1800/%pi)/10);
+
+OUTPUT:
+
+Test Case 2:
+Find the current at the receiving end for the varying values of the phase constant attenuation constant a from keeping the characteristic impedance Zo and the attenuation constant a constant.
+
+AIM: To find current at the receiving end for the varying values of the attenuation constant u from keeping the characteristic impedance Zo and the phase constant constant.
+
+CODE:
+clear;
+clc;
+Zo = 600;
+a = 0.1;
+b = 0.05;
+x = 10;
+Is = 20*(10^-3);
+Vr = 0;
+printf("-Receiving end voltage Vr = 0 because the receiving end has been short-circuited\n");
+// Propagation constant
+P = a + (%ib);
+// Receiving current
+Ir = Is/cosh(xP);
+A = real(Ir);
+B = imag(Ir);
+printf("-Received current Ir = %f /_%f mA\n", ...
+round(abs(Ir)*100000)/100, ...
+fix(atan(B,A)*1800/%pi)/10);
+
+OUTPUT:
+RESULT:
+The current at the receiving end for the varying values of the phase constant is found while keeping the characteristic impedance Zo and the attenuation constant u constant.

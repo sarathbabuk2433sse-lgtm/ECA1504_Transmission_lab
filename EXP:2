@@ -1,0 +1,64 @@
+Test Case 1:
+
+Find the primary constants R,L,G and C for the varying values of Characteristic Impedance (Zo) of a Transmission Line at a frequency f=2 Khz. Vary the Characteristic Impedance valup from 1()() O and take five readings at the interval of 2() O. Keep the Propagation Constant (7) constant.
+
+AIM: To find the primary constants R,L,G and C for the varying values of Characteristic Impedance (Zo) of a Transmission Line at a frequency f=2 Khz. Vary the Characteristic Impedance valuel from 100 Q and take five readings at the interval of 2() Q. Keep the Propagation Constant (y) constant
+
+CODE:
+clear;
+clc;
+Zo = 100.6;
+f = 2000;
+// Propagation constant
+P = 0.054exp(%i(87.9*%pi/180));
+w = 2*%pif;
+// Calculate Z = R + jωL
+Z = ZoP;
+R = real(Z);
+L = imag(Z)/w;
+printf('Resistance R = %f ohms/km\n', R);
+printf('Inductance L = %f mH/km\n', L10^3);
+// Calculate Y = G + jωC
+Y = P/Zo;
+G = real(Y);
+C = imag(Y)/w;
+printf('Conductance G = %f micromhos/km\n', G10^6);
+printf('Capacitance C = %f microfarads/km\n', C*10^6);
+
+OUTPUT:
+
+Test Case 2:
+
+Find the primary constants R,L,G and C for the varying values of Propagation constant of a Transmission Line at a frequency f=2 Khz. Vary the Propagation constant value from 200 30°Q and take five readings at the interval of 50 Q. Keep the characteristic impedance
+Zo=10022 constant
+
+AIM: To find the primary constants R,L,G and C for the varying values of Propagation constant of a Transmission Line at a frequency f=2 Khz. Vary the Propagation constant value from 200 30%2 and take file readings at the interval of 50 Q. Keep the characteristic impedance Zo=100 Q
+constant
+
+CODE:
+clear;
+clc;
+Zo = 100.6;
+f = 2000;
+// Propagation constant
+P = 0.054exp(%i(87.9*%pi/180));
+w = 2*%pif;
+// Calculate resistance and inductance
+Z = ZoP;
+R = real(Z);
+L = imag(Z)/w;
+printf('Resistance R = %f ohms/km\n', R);
+printf('Inductance L = %f mH/km\n', L10^3);
+// Calculate conductance and capacitance
+Y = P/Zo;
+G = real(Y);
+C = imag(Y)/w;
+printf('Conductance G = %f micromhos/km\n', G10^6);
+c = round(C10^610000)/10000;
+printf('Capacitance C = %f microfarads/km\n', c);
+
+OUTPUT:
+
+RESULT:
+
+Primary constants R,L,G and C are calculated by varying values of Propagation Constant at a frequency f=2 Khz keeping the Characteristic Impedance constant.

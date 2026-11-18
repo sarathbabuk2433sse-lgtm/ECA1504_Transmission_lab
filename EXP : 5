@@ -1,0 +1,78 @@
+Test Case 1:
+For a fixed characteristic impedance (Z0) of 50 ohms and varying reflection coefficientmagnitudes (K=|T|={0.1,0.3,0.5,0.7,0.9}), determine the position of the voltage minima (dmin) relative to the load.The position of voltage minima should shift based on K and the corresponding phase of T. Compute dmin using dmin=>/2ztan-1(Im(T)/Re(T)), where T=Keiº.
+
+AIM: To explore the relationship between position of Voltage minima nearest to the load by varying magnitude of reflection coefficient K for the range of values (K=IT|={0.1,0.3,0.5,0.7,0.9}).
+
+CODE:
+clc;
+clear;
+close;
+Zo = 50;
+ZR = 50 + (%i50);
+f = 300(10^6);
+// Wavelength
+lo = 3*(10^8)/f;
+// Reflection coefficient phase
+K0 = (ZR-Zo)/(ZR+Zo);
+phi = atan(imag(K0)/real(K0));
+printf("K\tSWR\tVoltage Minimum (m)\n");
+printf("--------------------------------------\n");
+K_values = [0.1 0.3 0.5 0.7 0.9];
+for i = 1:5
+ampK = K_values(i);
+// Complex reflection coefficient
+T = ampK*(cos(phi)+%isin(phi));
+// SWR calculation
+S = (1+abs(T))/(1-abs(T));
+// Position of voltage minimum
+ymax = philo/(4*%pi);
+ymin = ymax+(lo/4);
+printf("%f\t%f\t%f\n", ampK, S, ymin);
+end
+
+OUTPUT:
+
+Image
+Test Case 2:
+
+For a fixed reflection coefficient magnitude (K=0.5) and varying load impedances (ZL={25 92,50 22,100 22,150 2}), calculate the position of voltage
+minima nearest to the load. Validate that the position of Vmin changes with the phase angle of T, which is influenced by the load impedance.
+
+AIM: To calculate the position of voltage minima nearest to the load For a fixed reflection coefficient magnitude (K=0.5) and varying load impedance values.
+
+CODE:
+clc;
+clear;
+close;
+Zo = 50;
+f = 300*(10^6);
+// Wavelength
+lo = 3*(10^8)/f;
+// Fixed reflection coefficient magnitude
+ampK = 0.5;
+// Load impedance values (polar form)
+ZL_mag = [25 50 100 150];
+ZL_ang = [92 22 22 2];
+printf("Load Impedance\tSWR\tVoltage Minimum (m)\n");
+printf("---------------------------------------------\n");
+for i = 1:4
+// Convert polar impedance into rectangular form
+ZL = ZL_mag(i)(cos(ZL_ang(i)%pi/180) + %isin(ZL_ang(i)%pi/180));
+// Reflection coefficient
+K = (ZL-Zo)/(ZL+Zo);
+// Phase angle
+phi = atan(imag(K),real(K));
+// Fixed magnitude with calculated phase
+T = ampK*(cos(phi)+%i*sin(phi));
+// SWR
+S = (1+abs(T))/(1-abs(T));
+// Position of nearest voltage minimum
+ymin = modulo((phi+%pi)lo/(4%pi),lo/2);
+printf("%d angle %d\t%f\t%f\n", ZL_mag(i), ZL_ang(i), S, ymin);
+end
+
+OUTPUT:
+
+Image
+RESULT:
+The position of voltage minima nearest to the load for a fixed reflection coefficient magnitude (K=0.5) is estimated for varying load impedance values. Variation of the position of Vmin with the phase angle of r influenced by the load impedance is also validated.

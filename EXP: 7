@@ -1,0 +1,82 @@
+Test case 1:
+Optimize impedance matching using single stub matching by finding the location and length of the stub for the values of load impedance of to 350200 keeping the characteristic impedance Zo= 60 Q constant .
+
+AIM: To optimize impedance matching using single stub matching by finding the location and length of the stub for the values of load impedance of 100 300 to 3$0_ 300 keeÅjug the characteristic impedance Zo= 60 Q constant.
+
+CODE:
+clc;
+clear;
+close;
+Zo = 60;
+f = 100*(10^6);
+// Wavelength
+lo = 3*(10^8)/f;
+// Phase constant
+beta = 2*%pi/lo;
+// Load impedance values
+ZR_values = 100:50:350;
+printf("Load Impedance\tK\t\tS1 (m)\t\tStub Length (m)\n");
+printf("-------------------------------------------------------------\n");
+for i = 1:length(ZR_values)
+ZR = ZR_values(i);
+// Reflection coefficient
+K = (ZR-Zo)/(ZR+Zo);
+// Magnitude of K
+ampK = abs(K);
+// Phase angle
+phi = atan(imag(K)/real(K));
+if real(K) < 0 then
+phi = phi + %pi;
+end
+// Point of stub attachment (Given formula)
+S1 = (phi+%pi-acos(ampK))/(2beta);
+// Length of stub (Given formula)
+L = (lo/(2%pi))atan(sqrt(1-ampK^2)/(2ampK));
+printf("%f\t%f\t%f\t%f\n",ZR,ampK,S1,L);
+end
+
+OUTPUT:
+
+Image
+Test Case 2:
+Optimize impedance matching using single stub matching by finding the location and length of the stub for the values of characteristic impedahce ranging from 6000 to 1800 Q. Keeping the load impedance 100 constant .
+
+AIM: To optimize impedance matching using single stub matching by finding the location and length of the stub for the values of characteristic impedance ranging from 6()()Q to 1800 Q. Keeping the load impedance 100 300 constant.
+
+CODE:
+clc;
+clear;
+close;
+ZL = 100;
+f = 100*(10^6);
+// Wavelength
+lo = 3*(10^8)/f;
+// Phase constant
+beta = 2*%pi/lo;
+// Characteristic impedance values
+Zo_values = 600:200:1800;
+printf("Zo(Ohms)\tK\t\tS1(m)\t\tStub Length(m)\n");
+printf("----------------------------------------------------------\n");
+for i = 1:length(Zo_values)
+Zo = Zo_values(i);
+// Reflection coefficient
+K = (ZL-Zo)/(ZL+Zo);
+// Magnitude of K
+ampK = abs(K);
+// Phase angle
+phi = atan(imag(K)/real(K));
+if real(K) < 0 then
+phi = phi+%pi;
+end
+// Point of stub attachment
+S1 = (phi+%pi-acos(ampK))/(2beta);
+// Length of short-circuited stub
+L = (lo/(2%pi))atan(sqrt(1-ampK^2)/(2ampK));
+printf("%f\t%f\t%f\t%f\n",Zo,ampK,S1,L);
+end
+
+OUTPUT:
+
+Image
+RESULT:
+Impedance matching using single stub matching is optimized by calculating the location and length of the stub for varying values of characteristic impedance keeping the load impedance constant

@@ -1,0 +1,48 @@
+Test Case 1:
+Analyze the SWR of a transmission line for a fixed characteristic impedance (Zo) of 50 ohms, as the load impedance (ZL) is varied across 650 ohms to 850 ohms. Verify how the SWR changes with each value ofZL. When ZL=ZO, the SWR should equal 1 (indicating no reflection).
+
+AIM: To analyze the SWR ofa transmission line for a fixed characteristic impedance (Zo) of 50 ohms, as the load impedance (ZL) is varied across the following values: 25 ohms, 50 ohms, 75 ohms, and 100 ohms. To verify how the SWR changes with each value of ZL and when ZL=ZO.
+
+CODE:
+clc;
+clear;
+close;
+Zo = 200;
+ZR = 650 - (%i475);
+// Reflection coefficient
+K = (ZR - Zo)/(ZR + Zo);
+// Magnitude of K
+ampK = abs(K);
+// Standing Wave Ratio
+S = (1 + ampK)/(1 - ampK);
+printf("(c) Standing Wave Ratio = %f", round(S1000)/1000);
+
+OUTPUT:
+
+Test Case 2:
+Analyze the SWR for a fixed load impedance (ZL) of 50 ohms while varying the characteristic impedance (Zo) of the transmission line to 250 ohms to 400 ohms. Verify how the SWR changes with each value Zo including Zo=ZL.
+AIM: To analyze the SWR for a fixed load impedance (ZL) of 75 ohms while varying the characteristic impedance (Zo) of the transmission line to 25 ohms, 50 ohms, 75 ohms, and 100 ohms. To Verify how the SWR changes with each value Zo including Zo=ZL
+
+CODE:
+clc;
+clear;
+close;
+ZL = 50;
+printf("Zo (Ohms)\tSWR\n");
+printf("-------------------------\n");
+// When Zo = ZL
+Zo = 50;
+K = (ZL-Zo)/(ZL+Zo);
+S = (1+abs(K))/(1-abs(K));
+printf("%d\t\t%f\n", Zo, S);
+// Vary Zo from 250 to 400
+for Zo = 250:50:400
+K = (ZL-Zo)/(ZL+Zo);
+S = (1+abs(K))/(1-abs(K));
+printf("%d\t\t%f\n", Zo, S);
+end
+
+OUTPUT:
+
+RESULT:
+SWR for a fixed load impedance (ZL) of 50 ohms is analyzed while varying the characteristic impedance (Zo) of the transmission line to 250 ohms to 400 ohms. Impact of the condition Zo=ZL on SWR is also examined for various values of Zo

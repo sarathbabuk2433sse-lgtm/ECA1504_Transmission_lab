@@ -1,0 +1,200 @@
+Test Case-1
+Design a circular waveguide for the TEII mode to transmit a signal at 10 GHz. The material is air, and the waveguide length is 2 meters.
+
+Determine the minimum radius of the waveguide.
+Calculate the cutoff wavelength, guide wavelength, and characteristic impedance.
+AIM:
+To determine the propagation characteristics of circular waveguide in terms of Cutoff wavelength. Guidewavelength and characteristic impedance.
+CODE:
+// Constants
+c = 3e8;
+f = 10e9;
+p = 1.841;
+er = 1;
+mu_r = 1;
+eta = 377 / sqrt(er);
+// Calculations
+lambda = c / f;
+// Minimum radius
+r_min = (p * c) / (2 * %pi * f * sqrt(er));
+// Design radius (10% margin)
+r = 1.1 * r_min;
+// Cutoff wavelength
+lambda_c = (2 * %pi * r) / p;
+// Propagation constant
+k = (2 * %pi * f * sqrt(er)) / c;
+kc = p / r;
+beta = sqrt(k^2 - kc^2);
+// Guide wavelength
+lambda_g = (2 * %pi) / beta;
+// TE wave impedance
+Z = eta * k / beta;
+disp("Minimum Radius (m): " + string(r_min));
+disp("Design Radius (m): " + string(r));
+disp("Cutoff Wavelength (m): " + string(lambda_c));
+disp("Guide Wavelength (m): " + string(lambda_g));
+disp("Characteristic Impedance (Ohms): " + string(Z));
+
+OUTPUT:
+
+image
+Test Case 2:
+You are designing a circular waveguide to operate in the TEII mode at 12 GHz, and the waveguide is filled with a dielectric material with a relative permittivity of 2.5. The waveguide length is 3 meters.
+
+Determine the minimum radius of the waveguide.
+Calculate the cutoff wavelength and guide wavelength for the TEII mode.
+What would be the impact if the operating frequency is increased to 18 GHz? Would higher-order modes propagate?
+**AIM:**To determine the propagation characteristics of circular waveguide in terms of Cutoff wavelength. Guidewavelength and characteristic impedance.
+CODE:
+
+// Constants
+c = 3e8;
+f = 12e9;
+f2 = 18e9;
+p = 1.841;
+p_next = 2.405;
+er = 2.5;
+eta = 377 / sqrt(er);
+// Calculations
+lambda = c / (f * sqrt(er));
+// Minimum radius
+r_min = (p * c) / (2 * %pi * f * sqrt(er));
+// Design radius
+r = 1.1 * r_min;
+// Cutoff wavelength
+lambda_c = (2 * %pi * r) / p;
+// Propagation constant
+k = (2 * %pi * f * sqrt(er)) / c;
+kc = p / r;
+beta = sqrt(k^2 - kc^2);
+// Guide wavelength
+lambda_g = (2 * %pi) / beta;
+// TE wave impedance
+Z = eta * k / beta;
+// Higher-order mode cutoff frequency
+fc_next = (p_next * c) / (2 * %pi * r * sqrt(er));
+// Check at 18 GHz
+if f2 > fc_next then
+disp("Higher order modes can propagate at 18 GHz");
+else
+disp("Only TE11 mode propagates at 18 GHz");
+end
+disp("Minimum Radius (m): " + string(r_min));
+disp("Design Radius (m): " + string(r));
+disp("Cutoff Wavelength (m): " + string(lambda_c));
+disp("Guide Wavelength (m): " + string(lambda_g));
+disp("Characteristic Impedance (Ohms): " + string(Z));
+disp("Next Mode Cutoff Frequency (GHz): " + string(fc_next / 1e9));
+
+OUTPUT:
+
+image
+Test Case 3:
+A circular waveguide with a radius of 5 cm is designed to transmit a signal at 8 GHz in the TEII mode. Initially, the waveguide is filled with air, but it is later filled with a dielectric material of relative permittivity 4.
+
+Calculate the cutoff wavelength and guide wavelength before and after the dielectric is added.
+Determine the characteristic impedance in both cases.
+Discuss how the material change affects the waveguide's ability to transmit signals and how to mitigate any undesired effects.
+AIM: To determine the propagation characteristics of circular waveguide in terms of Cutoff wavelength. Guide wavelength and characteristic impedance
+CODE:
+
+// Constants
+c = 3e8;
+f = 8e9;
+r = 0.05;
+p = 1.841;
+// Cutoff wavelength
+lambda_c = (2 * %pi * r) / p;
+// Air calculations
+er = 1;
+eta = 377 / sqrt(er);
+lambda = c / (f * sqrt(er));
+k = (2 * %pi * f * sqrt(er)) / c;
+kc = p / r;
+beta = sqrt(k^2 - kc^2);
+lambda_g = (2 * %pi) / beta;
+Z = eta * k / beta;
+disp("AIR");
+disp("Cutoff Wavelength (m): " + string(lambda_c));
+disp("Guide Wavelength (m): " + string(lambda_g));
+disp("Characteristic Impedance (Ohms): " + string(Z));
+// Dielectric calculations
+er = 4;
+eta = 377 / sqrt(er);
+lambda = c / (f * sqrt(er));
+k = (2 * %pi * f * sqrt(er)) / c;
+kc = p / r;
+beta = sqrt(k^2 - kc^2);
+lambda_g = (2 * %pi) / beta;
+Z = eta * k / beta;
+disp("DIELECTRIC");
+disp("Cutoff Wavelength (m): " + string(lambda_c));
+disp("Guide Wavelength (m): " + string(lambda_g));
+disp("Characteristic Impedance (Ohms): " + string(Z));
+
+OUTPUT:
+
+image
+Test Case 4:
+A satellite communication system requires a circular waveguide to operate at 14 GHz in the TE11 mode. The waveguide's internal radius is 2.5 cm, and it is filled with air.
+. Calculate the cutoff frequency for the TE11 mode.
+. If the operating frequency is reduced to 12 GHz, will the TE11 mode still propagate?
+. Design the waveguide parameters to ensure that only the TE11 mode propagates when
+operating between 10 GHz and 16 GHz.
+
+AIM: To determine the propagation characteristics of circular waveguide in terms of Cutoff wavelength. Guide wavelength and characteristic impedance
+
+CODE:
+// Constants
+c = 3e8;
+f = 14e9;
+f_low = 10e9;
+f_high = 16e9;
+r = 0.025;
+p = 1.841;
+p_next = 2.405;
+eta = 377;
+// Cutoff frequency
+fc = (p * c) / (2 * %pi * r);
+// Cutoff wavelength
+lambda_c = (2 * %pi * r) / p;
+// Free-space wavelength
+lambda = c / f;
+// Propagation constant
+k = (2 * %pi * f) / c;
+kc = p / r;
+beta = sqrt(k^2 - kc^2);
+// Guide wavelength
+lambda_g = (2 * %pi) / beta;
+// TE wave impedance
+Z = eta * k / beta;
+// Next mode cutoff frequency
+fc_next = (p_next * c) / (2 * %pi * r);
+// Radius limits for single-mode operation
+r_min = (p * c) / (2 * %pi * f_low);
+r_max = (p_next * c) / (2 * %pi * f_high);
+disp("TE11 Cutoff Frequency (GHz): " + string(fc / 1e9));
+disp("Cutoff Wavelength (m): " + string(lambda_c));
+disp("Guide Wavelength (m): " + string(lambda_g));
+disp("Characteristic Impedance (Ohms): " + string(Z));
+disp("Next Mode Cutoff Frequency (GHz): " + string(fc_next / 1e9));
+if f > fc then
+disp("TE11 mode propagates at 14 GHz");
+else
+disp("TE11 mode does not propagate at 14 GHz");
+end
+if f_low < f_high then
+if r_min < r_max then
+disp("Single mode design is possible");
+else
+disp("Single mode design is NOT possible for 10-16 GHz");
+end
+end
+disp("Minimum Radius Limit (m): " + string(r_min));
+disp("Maximum Radius Limit (m): " + string(r_max));
+
+OUTPUT:
+
+image
+RESULT:
+The propagation characteristics of circular waveguide in terms of Cutoff wavelength Guide wavelength and characteristic impedance.

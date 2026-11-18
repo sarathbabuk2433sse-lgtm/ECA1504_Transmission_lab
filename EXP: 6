@@ -1,0 +1,63 @@
+Test Case 1:
+Design a quarter-wave transformer for an input impedance (Zin) of 50 ohms and a load impedance (ZI) of 100 ohms. Analyze the transformer's performance as the operating frequency is varied across {100 MHz, 200 MHz, 300 MHz, 500 MHz}.
+
+AIM: To design a quarter-wave transformer for an input impedance (Zn) of 50 ohms and a load impedance (ZD of 100 ohms and to analyze the transformer's performance as the operating frequency is varied across {100 MHz, 200 MHz, 300 MHz, 500 MHz }.
+
+CODE:
+clc;
+clear;
+close;
+Zin = 50;
+ZL = 100;
+// Characteristic impedance of quarter-wave transformer
+Z0 = sqrt(Zin*ZL);
+// Operating frequencies in Hz
+f = [100 200 300 500]10^6;
+printf("Characteristic impedance = %f Ohms\n", Z0);
+printf("------------------------------------------\n");
+printf("Frequency(MHz)\tWavelength(m)\tLength(m)\n");
+for i = 1:4
+// Wavelength
+lambda = 310^8/f(i);
+// Quarter-wave transformer length
+L = lambda/4;
+printf("%f\t\t%f\t\t%f\n", f(i)/10^6, lambda, L);
+end
+
+OUTPUT:
+
+Image
+Test Case 2:
+For a fixed operating frequency of 2 GHz and a load impedance (ZL) of 100 ohms, design a quarter-wave transformer and evaluate its performance as the input impedance (Zin) varies through {25 ohms, 50 ohms, 75 ohms, 100 ohms}. Validate that the transformer's characteristic impedance (Ztransformer= Ro= changes with Zin.
+
+AIM: To design a quarter-wave transformer a ftixed operating frequency of 2 GHz and a load impedance (ZL) of 100 ohms and evaluate its performance as the input impedance (Zn) varied. To validate that the transformer's characteristic impedance (Ztransformer= Ro= changes
+with Ln.
+
+CODE:
+clc;
+clear;
+close;
+ZL = 100;
+f = 2*(10^9);
+// Input impedance values
+Zin = [25 50 75 100];
+// Wavelength
+lambda = 3*(10^8)/f;
+// Quarter-wave transformer length
+L = lambda/4;
+printf("Frequency = %f GHz\n", f/10^9);
+printf("Quarter wave length = %f metres\n", L);
+printf("-----------------------------------\n");
+printf("Zin(Ohms)\tRo(Ohms)\n");
+printf("-----------------------------------\n");
+for i = 1:4
+// Characteristic impedance
+Ro = sqrt(ZL*Zin(i));
+printf("%f\t\t%f\n", Zin(i), Ro);
+end
+
+OUTPUT:
+
+Image
+RESULT:
+A quarter-wave transformer is designed at a fixed operating frequency of 2 GHz and load impedance (ZL) of 100 ohms and its performance is evaluated for various input impedance values. The variation of transformer's characteristic impedance with Zin is also validated.

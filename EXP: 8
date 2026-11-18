@@ -1,0 +1,54 @@
+Test Case 1:
+Analyze the variation of critical wavelength and guide wavelength of Electromagnetic waves between parallel plates with separation a ranging from 7.62 cm to 13 cm for TEI mode.
+
+AIM: To analyze the variation of critical wavelength and guide wavelength of Electromagnetic waves between parallel plates with separation a ranging from 7.62 cm to 13 cm for TEI mode.
+
+CODE:
+clc;
+clear;
+close;
+c = 3*(10^8);
+f = 3000*(10^6);
+// Wavelength in cm
+lo = (c/f)100;
+// Plate separation in cm
+a_values = [7.62 8.62 9.62 10.62 11.62 12.62 13];
+printf("Separation(cm)\tCritical wavelength(cm)\tGuide wavelength(cm)\n");
+printf("---------------------------------------------------------------\n");
+for i = 1:length(a_values)
+a = a_values(i);
+// Critical wavelength
+lc = 2a;
+// Guide wavelength
+lg = sqrt((lo^2*lc^2)/(lc^2-lo^2));
+printf("%f\t\t%f\t\t%f\n",a,lc,lg);
+end
+
+OUTPUT:
+
+Image
+Test Case 2:
+Analyze the variation of cutoff frequencies of Electromagnetic waves between parallel plates with for TEI, TE2, TE 3 and TE4 modes.
+
+AIM: To analyze the variation of cutoff frequencies of Electromagnetic waves between parallel plates with for TEI, TE2, TE 3 and TE4 modes.
+
+CODE:
+clc;
+clear;
+close;
+// Parallel plate waveguide
+a = 7.62*(10^-2);
+V = 3*(10^8);
+printf("Mode\tCutoff Frequency (GHz)\n");
+printf("--------------------------------\n");
+for m = 1:4
+// Cutoff frequency
+fc = (V/(2*%pi))sqrt((m%pi/a)^2);
+printf("TE%d\t%f\n",m,fc*(10^-9));
+end
+
+OUTPUT:
+
+Image
+RESULT:
+The variation of cutoff frequencies of Electromagnetic waves between parallel plates with for TEI, TE2, TE 3 and TE4 modes is examined using SCILAB

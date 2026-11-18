@@ -1,0 +1,178 @@
+Test Case 1:
+
+You are tasked with designing a rectangular cavity resonator that operates in the TE101 mode. The dimensions of the resonator are a=5cm, b=4 cm, and c=10 cm. The cavity is made of copper (C=5.8×10'S/m).
+
+If the dimension a is increased to 7 cm while keeping b and c constant, how does the Q- factor change? Explain the relationship between a and the Q-factor.
+AIM: To determine the Q Factor of Rectangular Cavity Resonator for TE101 mode by varying three dimensions
+
+SOFTWAREREQUIRED:
+SCILAB
+PROCEDURE:
+. Open SCILAB software
+· Open file-new
+. Put the input values
+. Type the program
+. Execute the program
+. End the program
+
+CODE:
+
+clear;
+clc;
+// Constants
+c0 = 3e8;
+mu0 = 4 * %pi * 10^-7;
+sigma = 5.8 * 10^7;
+// Fixed dimensions
+b = 4 * 10^-2;
+c = 10 * 10^-2;
+// Initial dimension a
+a = 5 * 10^-2;
+// Resonant frequency
+f101 = (c0 / 2) * sqrt(1/a^2 + 1/c^2);
+// Surface resistance
+Rs = sqrt(%pi * f101 * mu0 / sigma);
+// Q Factor
+Q1 = (%pi * f101 * mu0 * a * b * c * (a^2 + c^2)) / (Rs * (2b(a^3 + c^3) + ac(a^2 + c^2)));
+disp("Initial Q Factor:");
+disp(Q1);
+// Increased dimension a
+a = 7 * 10^-2;
+// Recalculate frequency
+f101 = (c0 / 2) * sqrt(1/a^2 + 1/c^2);
+// Surface resistance
+Rs = sqrt(%pi * f101 * mu0 / sigma);
+// Q Factor
+Q2 = (%pi * f101 * mu0 * a * b * c * (a^2 + c^2)) / (Rs * (2b(a^3 + c^3) + ac(a^2 + c^2)));
+disp("New Q Factor:");
+disp(Q2);
+// Comparison
+disp("Change in Q Factor:");
+disp(Q2 - Q1);
+
+OUTPUT:
+
+image
+Test Case 2 :
+You are asked to optimize the rectangular cavity resonator to achieve the highest possible Q-factor using the dimensions provided.
+
+Based on the variation in a, b, and c, which combination of dimensions yields the maximum Q-factor?
+Explain why this combination results in a higher Q-factor.Consider therelationship between a, b, and c and how they affect the Q-factor in the given formula.
+AIM: To determine the Q Factor of Rectangular Cavity Resonator for TEIOI mode by varying three dimensions.
+
+CODE:
+clear;
+clc;
+// Constants
+c0 = 3e8;
+mu0 = 4 * %pi * 10^-7;
+sigma = 5.8 * 10^7;
+// Dimension ranges in metres
+a_values = [4 5 6 7] * 10^-2;
+b_values = [3 4 5] * 10^-2;
+c = 10 * 10^-2;
+// Initial maximum
+maxQ = 0;
+// Optimization
+for i = 1:length(a_values)
+for j = 1:length(b_values)
+a = a_values(i);
+b = b_values(j);
+f101 = (c0 / 2) * sqrt(1/a^2 + 1/c^2);
+Rs = sqrt(%pi * f101 * mu0 / sigma);
+Q = (%pi * f101 * mu0 * a * b * c * (a^2 + c^2)) / (Rs * (2b(a^3 + c^3) + ac(a^2 + c^2)));
+disp("a (cm): " + string(a100));
+disp("b (cm): " + string(b100));
+disp("Q Factor: " + string(Q));
+if Q > maxQ then
+maxQ = Q;
+bestA = a;
+bestB = b;
+end
+end
+end
+// Maximum Q output
+disp("Maximum Q Factor:");
+disp(maxQ);
+disp("Best a (cm):");
+disp(bestA100);
+disp("Best b (cm):");
+disp(bestB100);
+disp("Best c (cm):");
+disp(c*100);
+
+OUTPUT:
+
+image image
+Test Case 3 :
+
+Your task is to assess how changes in a single dimension affect the resonator's performance.
+
+Fix b=4 cm and c=10 cm and vary a between 4 cmand 6 cm. How does the Q- factor change? What does this tell you about the sensitivity of the Q-factor to the dimension a?
+In practical scenarios, which dimension is most critical to optimize for achieving a high Q-factor, and why?
+AIM:
+To determine the Q Factor of Rectangular Cavity Resonator for TE101 mode by varying three dimensions
+
+CODE:
+clear;
+clc;
+// Constants
+c0 = 3e8;
+mu0 = 4 * %pi * 10^-7;
+sigma = 5.8 * 10^7;
+// Fixed dimensions
+b = 4 * 10^-2;
+c = 10 * 10^-2;
+// Vary a from 4 cm to 6 cm
+for a_cm = 4:1:6
+a = a_cm * 10^-2;
+// Resonant frequency
+f101 = (c0 / 2) * sqrt(1/a^2 + 1/c^2);
+// Surface resistance
+Rs = sqrt(%pi * f101 * mu0 / sigma);
+// Q Factor
+Q = (%pi * f101 * mu0 * a * b * c * (a^2 + c^2)) / (Rs * (2b(a^3 + c^3) + ac(a^2 + c^2)));
+disp("Dimension a (cm):");
+disp(a_cm);
+disp("Q Factor:");
+disp(Q);
+end
+
+OUTPUT:
+
+image
+Test Case 4 :
+You are tasked with investigating how changes in b(the y-axis dimension) affect the Q- factor of the rectangular cavity resonator. Fix a=5 cm and c=10 cm and vary b between 3 cm and 5 cm. Analyze the Q-factor for these changes.
+AIM:
+To determine the Q Factor of Rectangular Cavity Resonator for TEIOI mode by varying three dimensions
+
+CODE:
+clear;
+clc;
+// Constants
+c0 = 3e8;
+mu0 = 4 * %pi * 10^-7;
+sigma = 5.8 * 10^7;
+// Fixed dimensions
+a = 5 * 10^-2;
+c = 10 * 10^-2;
+// Resonant frequency
+f101 = (c0 / 2) * sqrt(1/a^2 + 1/c^2);
+// Surface resistance
+Rs = sqrt(%pi * f101 * mu0 / sigma);
+// Vary b from 3 cm to 5 cm
+for b_cm = 3:1:5
+b = b_cm * 10^-2;
+// Q Factor
+Q = (%pi * f101 * mu0 * a * b * c * (a^2 + c^2)) / (Rs * (2b(a^3 + c^3) + ac(a^2 + c^2)));
+disp("Dimension b (cm):");
+disp(b_cm);
+disp("Q Factor:");
+disp(Q);
+end
+
+OUTPUT:
+
+image
+RESULT:
+The Q Factor of Rectangular Cavity Resonator for TE101 mode by varying three dimensions is determined using Scilab.
